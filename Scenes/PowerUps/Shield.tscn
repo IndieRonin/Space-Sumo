@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://dl1s30y838k77"]
+
+[node name="Shield" type="StaticBody2D"]

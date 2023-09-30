@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://bll4qsh22nx3l"]
+
+[ext_resource type="Texture2D" uid="uid://dcfpym0yq6qxr" path="res://Scenes/Player/Player.png" id="1_i15gy"]
+[ext_resource type="Script" path="res://Scenes/Components/Movement.cs" id="2_emdv6"]
+[ext_resource type="Script" path="res://Scenes/Components/Dash.cs" id="3_7befr"]
+[ext_resource type="Script" path="res://Scenes/Components/PlayerInput.cs" id="4_qrivi"]
+
+[node name="Player" type="CharacterBody2D"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(5, -16, 9, -11, 15, -13, 22, -12, 27, -7, 29, 0, 27, 7, 22, 12, 15, 13, 9, 11, 5, 16, 0, 19, -7, 21, -10, 21, -13, 25, -16, 27, -20, 28, -24, 26, -25, 22, -25, 18, -24, 14, -27, 8, -29, 1, -27, -7, -24, -13, -25, -17, -25, -22, -24, -26, -20, -28, -16, -27, -13, -25, -10, -21, -7, -21, 0, -19)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_i15gy")
+
+[node name="Movement" type="Node" parent="." node_paths=PackedStringArray("body2D")]
+script = ExtResource("2_emdv6")
+body2D = NodePath("..")
+
+[node name="Dash" type="Node" parent="." node_paths=PackedStringArray("body2D", "move", "dashTimer")]
+script = ExtResource("3_7befr")
+body2D = NodePath("..")
+move = NodePath("../Movement")
+dashTimer = NodePath("../DashTimer")
+
+[node name="DashTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="PlayerInput" type="Node" parent="." node_paths=PackedStringArray("move", "dash")]
+script = ExtResource("4_qrivi")
+move = NodePath("../Movement")
+dash = NodePath("../Dash")

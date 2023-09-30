@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cflax6wgv563w"]
+
+[ext_resource type="PackedScene" uid="uid://bll4qsh22nx3l" path="res://Scenes/Player/player.tscn" id="1_qsm0j"]
+[ext_resource type="Texture2D" uid="uid://fl75i7nefbrf" path="res://Scenes/Ring/Ring.png" id="2_ejae7"]
+
+[node name="Main" type="Node"]
+
+[node name="Player" parent="." instance=ExtResource("1_qsm0j")]
+position = Vector2(649, 211)
+
+[node name="Ring" type="Sprite2D" parent="."]
+position = Vector2(788, 480)
+texture = ExtResource("2_ejae7")
