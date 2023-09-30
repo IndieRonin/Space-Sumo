@@ -12,6 +12,7 @@ config_version=5
 
 config/name="Space-sumo"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
+boot_splash/bg_color=Color(0, 0, 0, 1)
 config/icon="res://icon.svg"
 
 [display]
@@ -23,3 +24,7 @@ window/size/resizable=false
 [dotnet]
 
 project/assembly_name="Space-sumo"
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0.0392157, 0.0392157, 0.0392157, 1)

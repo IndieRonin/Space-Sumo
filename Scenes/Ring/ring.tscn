@@ -1,7 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://bhptlrhody5nm"]
+[gd_scene load_steps=6 format=3 uid="uid://bhptlrhody5nm"]
 
 [ext_resource type="Script" path="res://Scenes/Ring/Ringofdeath.cs" id="2_e0uuc"]
 [ext_resource type="Script" path="res://Scenes/Ring/RingPoly.cs" id="2_qadjv"]
+
+[sub_resource type="Gradient" id="Gradient_0cjot"]
+offsets = PackedFloat32Array(0, 0.215139, 0.800797, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_f05um"]
+gradient = SubResource("Gradient_0cjot")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nj01v"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 0.0
+emission_ring_radius = 512.0
+emission_ring_inner_radius = 500.0
+direction = Vector3(0, 0, 0)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+scale_max = 3.0
+color_ramp = SubResource("GradientTexture1D_f05um")
 
 [node name="Ring" type="Node2D"]
 position = Vector2(879.5, 512.5)
@@ -21,3 +42,7 @@ polygon = PackedVector2Array(700, 0, 699.386, 29.313, 697.545, 58.5745, 694.48, 
 [node name="ShrinkTimer" type="Timer" parent="."]
 wait_time = 120.0
 one_shot = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 128
+process_material = SubResource("ParticleProcessMaterial_nj01v")

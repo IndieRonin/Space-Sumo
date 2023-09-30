@@ -1,20 +1,30 @@
-[gd_scene load_steps=3 format=3 uid="uid://ioecdwpqeb7n"]
+[gd_scene load_steps=7 format=3 uid="uid://ioecdwpqeb7n"]
 
 [ext_resource type="PackedScene" uid="uid://bx0ufr8cdncii" path="res://Scenes/UI/hud.tscn" id="1_5krg4"]
+[ext_resource type="Script" path="res://Scenes/UI/gui.cs" id="1_13f3p"]
 [ext_resource type="PackedScene" uid="uid://c00jv23kv3v56" path="res://Scenes/UI/menu.tscn" id="2_qj5io"]
+[ext_resource type="PackedScene" uid="uid://0uiogkpm3ulj" path="res://Scenes/UI/countdown.tscn" id="4_drk42"]
+[ext_resource type="PackedScene" uid="uid://bvuavihhn5ioi" path="res://Scenes/UI/results.tscn" id="5_5jxbd"]
+[ext_resource type="PackedScene" uid="uid://dro07okqhj605" path="res://Scenes/UI/blackout.tscn" id="6_liugq"]
 
-[node name="GUI" type="CanvasLayer"]
+[node name="GUI" type="CanvasLayer" node_paths=PackedStringArray("HUD", "menu", "countdown", "results", "blackout")]
+script = ExtResource("1_13f3p")
+HUD = NodePath("HUD")
+menu = NodePath("Menu")
+countdown = NodePath("Countdown")
+results = NodePath("results")
+blackout = NodePath("Blackout")
 
 [node name="HUD" parent="." instance=ExtResource("1_5krg4")]
 visible = false
-offset_left = 21.177
-offset_top = 1048.57
-offset_right = 21.177
-offset_bottom = 1048.57
 
 [node name="Menu" parent="." instance=ExtResource("2_qj5io")]
+
+[node name="Countdown" parent="." instance=ExtResource("4_drk42")]
 visible = false
-offset_left = 21.177
-offset_top = 1048.57
-offset_right = 21.177
-offset_bottom = 1048.57
+
+[node name="results" parent="." instance=ExtResource("5_5jxbd")]
+visible = false
+
+[node name="Blackout" parent="." instance=ExtResource("6_liugq")]
+visible = false

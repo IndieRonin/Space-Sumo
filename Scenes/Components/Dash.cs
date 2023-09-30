@@ -17,7 +17,6 @@ namespace Components
 			Vector2 mousePosition = body2D.GetGlobalMousePosition();
 			if (!dashTimer.IsStopped()) return;
 			Vector2 dashDir = mousePosition - body2D.GlobalPosition;
-			GD.Print(dashDir);
 			move?.ModAccel(dashDir.Normalized() * dashSpeed);
 			dashTimer.Start();
 			canDash = false;

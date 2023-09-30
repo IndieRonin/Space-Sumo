@@ -1,4 +1,7 @@
-[gd_scene format=3 uid="uid://c00jv23kv3v56"]
+[gd_scene load_steps=3 format=3 uid="uid://c00jv23kv3v56"]
+
+[ext_resource type="Script" path="res://Scenes/UI/StartMatchPressed.cs" id="1_jn6hg"]
+[ext_resource type="Script" path="res://Scenes/UI/Exit.cs" id="2_nuytp"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -28,18 +31,24 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 16
 alignment = 1
 
-[node name="Start Match" type="Button" parent="HBoxContainer/Menu"]
+[node name="Start Match" type="Button" parent="HBoxContainer/Menu" node_paths=PackedStringArray("menu")]
 layout_mode = 2
+theme_override_font_sizes/font_size = 62
 text = "Start"
+script = ExtResource("1_jn6hg")
+menu = NodePath("../../..")
 
 [node name="Options" type="Button" parent="HBoxContainer/Menu"]
 visible = false
 layout_mode = 2
+theme_override_font_sizes/font_size = 62
 text = "Options"
 
 [node name="Exit" type="Button" parent="HBoxContainer/Menu"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 62
 text = "Exit"
+script = ExtResource("2_nuytp")
 
 [node name="Right Side Bar" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
