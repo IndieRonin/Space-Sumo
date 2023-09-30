@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using EventCallback;
 
 namespace Components
 {
@@ -16,6 +17,8 @@ namespace Components
 		Vector2 target;
 		public override void _PhysicsProcess(double delta)
 		{
+			BounceBackEvent.RegisterListener(OnBounceBackEvent);
+
 			body2D.LookAt(target);
 			acceleration = new Vector2(x, y) * (float)delta;
 			velocity += acceleration * speed + AccelMod;
@@ -31,14 +34,18 @@ namespace Components
 			KinematicCollision2D collision = body2D.MoveAndCollide(velocity * delta, false);
 			if (collision != null)
 			{
+				GD.Print(GetParent().Name + " just collided with " + ((Node2D)InstanceFromId(collision.GetColliderId())).Name);
 				this.velocity = this.velocity.Bounce(collision.GetNormal()) * 0.5f;
 				Vector2 reflect = collision.GetRemainder().Bounce(collision.GetNormal());
 				body2D.MoveAndCollide(reflect);
 
-				if (collision.GetCollider().HasMethod("ApplyCentralImpulse"))
+				BounceBackEvent bbe = new()
 				{
-					collision.GetCollider().Call("ApplyCentralImpulse", -collision.GetNormal() * 200);
-				}
+					callerClass = "Movement: MoveAndBounceOffTheAsteroids()",
+					ID = collision.GetColliderId(),
+					BounceForce = -collision.GetNormal() * 5.0f
+				};
+				bbe.FireEvent();
 			}
 		}
 
@@ -51,6 +58,12 @@ namespace Components
 			x = _x;
 			y = _y;
 			target = _target;
+		}
+
+		private void OnBounceBackEvent(BounceBackEvent bbe)
+		{
+			if (bbe.ID != GetParent().GetInstanceId()) return;
+			AccelMod += bbe.BounceForce;
 		}
 	}
 }

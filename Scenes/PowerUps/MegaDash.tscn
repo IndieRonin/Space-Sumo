@@ -1,3 +1,9 @@
-[gd_scene format=3 uid="uid://dyoyy2u1ibxx2"]
+[gd_scene load_steps=2 format=3 uid="uid://dyoyy2u1ibxx2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r0063"]
+radius = 32.0
 
 [node name="MegaDash" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_r0063")
