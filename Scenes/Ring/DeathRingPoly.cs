@@ -1,10 +1,9 @@
 using Godot;
 using System;
 using System.Linq;
-using EventCallback;
 
 [Tool]
-public partial class RingPoly : Polygon2D
+public partial class DeathRingPoly : CollisionPolygon2D
 {
 	// Define the number of vertices for your ring (more vertices create a smoother ring).
 	[Export] int numVertices = 90;
@@ -47,4 +46,6 @@ public partial class RingPoly : Polygon2D
 		// Set the ring's vertices.
 		Polygon = _vertices;
 	}
+
+
 }
