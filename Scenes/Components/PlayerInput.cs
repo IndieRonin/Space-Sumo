@@ -10,9 +10,11 @@ namespace Components
 		[Export] Dash dash;
 		float x, y;
 		Vector2 target;
+		bool canDash = true;
 
 		public override void _Input(InputEvent @event)
 		{
+			x = 0; y = 0;
 			target = (GetParent() as Node2D).GetGlobalMousePosition();
 
 			if (Input.IsKeyPressed(Key.W))
@@ -33,12 +35,14 @@ namespace Components
 			}
 			if (Input.IsMouseButtonPressed(MouseButton.Left))
 			{
-				dash?.GetInput(true);
+				canDash = true;
 			}
 		}
 		public override void _Process(double delta)
 		{
 			move?.GetInput(x, y, target);
+			dash?.GetInput(canDash);
+			canDash = false;
 		}
 	}
 }

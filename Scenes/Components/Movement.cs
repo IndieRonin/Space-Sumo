@@ -8,8 +8,7 @@ namespace Components
 	{
 		[Export] CharacterBody2D body2D;
 		[Export] public float speed = 500f;
-		[Export] public float friction = .8f; // 0.97f
-		[Export] public float move_radius = 25f;
+		[Export] public float friction = .97f;
 		private Vector2 AccelMod = Vector2.One;
 		private Vector2 velocity = Vector2.Zero;
 		private Vector2 acceleration = Vector2.Zero;
@@ -23,9 +22,8 @@ namespace Components
 			MoveAndBounceOffTheAsteroids(velocity, (float)delta);
 			velocity = velocity.Clamp(new Vector2(-900, -900), new Vector2(900, 900));
 			velocity *= friction;
-			acceleration = Vector2.One;
-			AccelMod = Vector2.One;
-			// x = 0; y = 0;
+			acceleration = Vector2.Zero;
+			AccelMod = Vector2.Zero;
 		}
 
 		private void MoveAndBounceOffTheAsteroids(Vector2 velocity, float delta)

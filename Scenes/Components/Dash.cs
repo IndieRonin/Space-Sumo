@@ -10,7 +10,7 @@ namespace Components
 		[Export] CharacterBody2D body2D;
 		[Export] Movement move;
 		[Export] Timer dashTimer = null;
-		bool canDash = false;
+		bool canDash = true;
 		public override void _PhysicsProcess(double delta)
 		{
 			if (!canDash) return; //If the get input has changed the value of candash then run the code
@@ -25,7 +25,7 @@ namespace Components
 
 		public void GetInput(bool _canDash)
 		{
-			_canDash = _canDash;
+			canDash = _canDash;
 		}
 	}
 }

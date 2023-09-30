@@ -16,14 +16,17 @@ texture = ExtResource("1_i15gy")
 [node name="Movement" type="Node" parent="." node_paths=PackedStringArray("body2D")]
 script = ExtResource("2_emdv6")
 body2D = NodePath("..")
+speed = 800.0
 
 [node name="Dash" type="Node" parent="." node_paths=PackedStringArray("body2D", "move", "dashTimer")]
 script = ExtResource("3_7befr")
+dashSpeed = 700.0
 body2D = NodePath("..")
 move = NodePath("../Movement")
 dashTimer = NodePath("../DashTimer")
 
 [node name="DashTimer" type="Timer" parent="."]
+wait_time = 0.6
 one_shot = true
 
 [node name="PlayerInput" type="Node" parent="." node_paths=PackedStringArray("move", "dash")]
