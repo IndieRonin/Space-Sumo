@@ -1,9 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://duwvnfddij42d"]
+[gd_scene load_steps=5 format=3 uid="uid://duwvnfddij42d"]
 
 [ext_resource type="Script" path="res://Scenes/Boxes/BoxSpawner.cs" id="1_carrf"]
-[ext_resource type="PackedScene" uid="uid://dy0dgpgj5ubd5" path="res://Scenes/Boxes/BadBox.tscn" id="2_guurv"]
+[ext_resource type="PackedScene" uid="uid://cgm3ljqerp6hb" path="res://Scenes/Boxes/BadBox1.tscn" id="2_wg8l8"]
+[ext_resource type="PackedScene" uid="uid://dy0dgpgj5ubd5" path="res://Scenes/Boxes/BadBox2.tscn" id="3_jtvax"]
+[ext_resource type="PackedScene" uid="uid://d0rv2g5pummr0" path="res://Scenes/Boxes/BadBox3.tscn" id="4_xo04o"]
 
 [node name="Box Spawner" type="Node2D"]
 script = ExtResource("1_carrf")
-badBoxScene = ExtResource("2_guurv")
-Radius = 120.0
+badBox1Scene = ExtResource("2_wg8l8")
+badBox2Scene = ExtResource("3_jtvax")
+badBox3Scene = ExtResource("4_xo04o")

@@ -1,10 +1,9 @@
+using EventCallback;
 using Godot;
 using System;
 
 public partial class TimeLeft : Label
 {
-	[Export] Timer countdownTimer = null;
-
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -13,6 +12,8 @@ public partial class TimeLeft : Label
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		Text = "Rift closing in: " + Mathf.Round(countdownTimer.TimeLeft);
+		GetRiftTimeEvent grte = new();
+		grte.FireEvent();
+		Text = "Rift closes in:\n" + Mathf.Round(grte.timeLeft);
 	}
 }

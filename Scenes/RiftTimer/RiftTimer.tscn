@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cp7j67q3qtu5j"]
+
+[ext_resource type="Script" path="res://Scenes/RiftTimer/RiftTimer.cs" id="1_tksim"]
+
+[node name="RiftTimer" type="Node" node_paths=PackedStringArray("riftTimer")]
+script = ExtResource("1_tksim")
+riftTimer = NodePath("CountdownTimer")
+
+[node name="CountdownTimer" type="Timer" parent="."]
+wait_time = 20.0
+one_shot = true

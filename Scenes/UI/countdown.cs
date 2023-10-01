@@ -11,6 +11,7 @@ public partial class countdown : Label
 	{
 		countdownTimer.Timeout += () => OnTimeout();
 		ShowCountdownEvent.RegisterListener(OnShowCountdownEvent);
+		SetProcess(false);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -18,11 +19,11 @@ public partial class countdown : Label
 	{
 		if (countdownTimer.TimeLeft < 1)
 		{
-			Text = "Fight!";
+			Text = "Rift Open!";
 		}
 		else
 		{
-			Text = Mathf.RoundToInt(countdownTimer.TimeLeft).ToString();
+			Text = "Opening rift in: " + Mathf.RoundToInt(countdownTimer.TimeLeft).ToString();
 		}
 	}
 
@@ -31,10 +32,14 @@ public partial class countdown : Label
 		CountdownDoneEvent cde = new();
 		cde.FireEvent();
 		Visible = false; //Hide itself as it is done
+
+		StartRiftTimerEvent srte = new();
+		srte.FireEvent();
 	}
 
 	private void OnShowCountdownEvent(ShowCountdownEvent sce)
 	{
 		countdownTimer.Start();
+		SetProcess(true);
 	}
 }

@@ -5,8 +5,7 @@ using EventCallback;
 public partial class BadBox : RigidBody2D
 {
 	[Export] int deathHit = 2;
-	[Export] float speed = 5;
-	Vector2 accelMod = Vector2.Zero; //The acceleleration moddifier for the box
+	[Export] float speed = 20;
 	Node2D target = null; //The target the 
 						  // Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -36,8 +35,7 @@ public partial class BadBox : RigidBody2D
 	private void OnBounceBackEvent(BounceBackEvent bbe)
 	{
 		if (bbe.TargetID != GetInstanceId()) return;
-		GD.Print("BadBox: OnBounceBackEvent - bbe.BounceForce = " + bbe.BounceForce);
-		ApplyImpulse(bbe.BounceForce);
+		ApplyImpulse(bbe.BounceForce / Mass);
 
 		deathHit--;//Decrease the hits it can take by one
 
@@ -49,6 +47,7 @@ public partial class BadBox : RigidBody2D
 				TargetID = bbe.TargetID
 			};
 			de.FireEvent();
+			CallDeferred("queue_free");
 		}
 	}
 

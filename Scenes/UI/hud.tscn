@@ -49,19 +49,15 @@ layout_mode = 2
 size_flags_vertical = 3
 alignment = 2
 
-[node name="TimeLeft" type="Label" parent="MarginContainer/Main/RightContainer/Transport Time" node_paths=PackedStringArray("countdownTimer")]
+[node name="TimeLeft" type="Label" parent="MarginContainer/Main/RightContainer/Transport Time"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 30
 text = "Rift closing in:"
+horizontal_alignment = 1
+vertical_alignment = 1
 script = ExtResource("2_soofx")
-countdownTimer = NodePath("../CountdownTimer")
-
-[node name="CountdownTimer" type="Timer" parent="MarginContainer/Main/RightContainer/Transport Time"]
-wait_time = 300.0
-one_shot = true
-autostart = true
 
 [node name="DashBarHolder" type="HBoxContainer" parent="MarginContainer/Main/RightContainer"]
 layout_mode = 2

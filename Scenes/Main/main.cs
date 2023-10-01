@@ -9,6 +9,7 @@ public partial class main : Node2D
 	[Export] PackedScene ringScene = null;
 	[Export] PackedScene boxSpawnerScene = null;
 	[Export] PackedScene playerScene = null;
+	[Export] PackedScene riftTimerScene = null;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -28,15 +29,18 @@ public partial class main : Node2D
 		Node2D ring = ringScene.Instantiate() as Node2D;
 		Node2D boxSpawner = boxSpawnerScene.Instantiate() as Node2D;
 		Node2D player = playerScene.Instantiate() as Node2D;
+		Node riftTimer = riftTimerScene.Instantiate() as Node;
 
+		background.GlobalPosition = new Vector2(GetViewportRect().Size.X / 2.0f, GetViewportRect().Size.Y / 2.0f);
 		ring.GlobalPosition = new Vector2(GetViewportRect().Size.X / 2.0f, GetViewportRect().Size.Y / 2.0f);
-		boxSpawner.GlobalPosition = new Vector2(GetViewportRect().Size.X / 2.0f, GetViewportRect().Size.Y / 2.0f);
 		player.GlobalPosition = new Vector2(GetViewportRect().Size.X / 2.0f, GetViewportRect().Size.Y / 2.0f);
 
 		AddChild(ring);
 		AddChild(boxSpawner);
 		AddChild(player);
 		AddChild(background);
+		AddChild(riftTimer);
+
 		//Have to move the shildren like this coz I implimented the main scene in a stupid way and don't have time to fix it properly
 		MoveChild(player, 0);
 		MoveChild(ring, 0);

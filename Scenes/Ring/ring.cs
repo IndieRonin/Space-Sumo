@@ -1,6 +1,7 @@
 using EventCallback;
 using Godot;
 using System;
+using System.Net.Mail;
 
 public partial class ring : Node2D
 {
@@ -10,6 +11,7 @@ public partial class ring : Node2D
 	[Export] float outerRadius = 700.0f;
 	[Export] CollisionPolygon2D colPoly = null;
 	[Export] Area2D deathArea = null;
+	[Export] Area2D insideArea = null;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -20,6 +22,7 @@ public partial class ring : Node2D
 		RefreshRingEvent.RegisterListener(OnRefreshRingEvent);
 		StartShrinkEvent.RegisterListener(OnStartShrinkEvent);
 		BoxGetTargetEvent.RegisterListener(OnBoxGetTargetEvent);
+		RiftTimerDoneEvent.RegisterListener(OnRiftTimerDoneEvent);
 		SetProcess(false);
 	}
 	public override void _Process(double delta)
@@ -57,6 +60,25 @@ public partial class ring : Node2D
 	private void OnBoxGetTargetEvent(BoxGetTargetEvent bgte)
 	{
 		bgte.TargetID = GetInstanceId();
+	}
+
+	private void OnRiftTimerDoneEvent(RiftTimerDoneEvent rtde)
+	{
+		bool boxInRift = false;
+		Godot.Collections.Array<Node2D> bodiesCheck = insideArea.GetOverlappingBodies();
+		foreach (Node2D node in bodiesCheck)
+		{
+			if (node.IsInGroup("Box")) boxInRift = true;//Send lose signal
+		}
+
+		if (boxInRift)
+		{
+			//Call fail
+		}
+		else
+		{
+			//Call win
+		}
 	}
 	public void AdjustCollisionPoly()
 	{
