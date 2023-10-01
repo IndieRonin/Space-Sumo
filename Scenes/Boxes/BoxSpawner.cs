@@ -4,9 +4,9 @@ using System;
 
 public partial class BoxSpawner : Node2D
 {
-	[Export] PackedScene badBox1Scene;
-	[Export] PackedScene badBox2Scene;
-	[Export] PackedScene badBox3Scene;
+	[Export] PackedScene badBox1Scene = new();
+	[Export] PackedScene badBox2Scene = new();
+	[Export] PackedScene badBox3Scene = new();
 
 	[Export] public float Radius = 1100.0f; // Initial radius value, you can adjust this in the editor.
 	private Random random = new();
@@ -58,7 +58,8 @@ public partial class BoxSpawner : Node2D
 			// Calculate a random position within the circle based on the angle and radius.
 			Vector2 circleSpawnPosition = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * Radius;
 			Vector2 SpawnPosition = new Vector2(GetViewportRect().Size.X / 2.0f, GetViewportRect().Size.Y / 2.0f);
-			Node2D badBox = (Node2D)boxToSpawnScene.Instantiate();
+			Node2D badBox = new();
+			badBox = (Node2D)boxToSpawnScene.Instantiate();
 			badBox.GlobalPosition = SpawnPosition + circleSpawnPosition;
 			AddChild(badBox);
 		}

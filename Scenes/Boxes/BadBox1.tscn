@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bjjb0"]
 size = Vector2(65, 64)
 
-[node name="BadBox" type="RigidBody2D" groups=["Box"]]
+[node name="BadBox1" type="RigidBody2D" groups=["Box"]]
 gravity_scale = 0.0
 script = ExtResource("1_8igtc")
 deathHit = 1

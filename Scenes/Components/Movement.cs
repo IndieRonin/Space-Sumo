@@ -34,12 +34,10 @@ namespace Components
 			KinematicCollision2D collision = body2D.MoveAndCollide(velocity * delta, false);
 			if (collision != null)
 			{
-				GD.Print(GetParent().Name + " just collided with " + ((Node2D)InstanceFromId(collision.GetColliderId())).Name);
 				this.velocity = this.velocity.Bounce(collision.GetNormal()) * 0.5f;
 				Vector2 reflect = collision.GetRemainder().Bounce(collision.GetNormal());
 				body2D.MoveAndCollide(reflect);
 
-				GD.Print("Movement: MoveAndBounceOffTheAsteroids - AccelMod = " + velocity);
 				BounceBackEvent bbe = new()
 				{
 					callerClass = "Movement: MoveAndBounceOffTheAsteroids()",

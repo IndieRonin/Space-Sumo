@@ -23,13 +23,6 @@ public partial class BadBox : RigidBody2D
 			dir.Normalized();//Normalize the direction
 			ApplyImpulse(dir * speed * .005f);
 		}
-
-
-	}
-
-	private void OnSetBoxTargetEvent(SetBoxTargetEvent sbte)
-	{
-
 	}
 
 	private void OnBounceBackEvent(BounceBackEvent bbe)
@@ -47,7 +40,7 @@ public partial class BadBox : RigidBody2D
 				TargetID = bbe.TargetID
 			};
 			de.FireEvent();
-			CallDeferred("queue_free");
+			this.CallDeferred("queue_free");
 		}
 	}
 
