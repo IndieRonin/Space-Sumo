@@ -23,7 +23,6 @@ public partial class main : Node2D
 		StartGameEvent.RegisterListener(OnStartGameEvent);
 		CountdownDoneEvent.RegisterListener(OnCountdownDoneEvent);
 		BlackoutDoneEvent.RegisterListener(OnBlackoutDoneEvent);
-
 		ShowResultsEvent.RegisterListener(OnShowResultsEvent);
 	}
 

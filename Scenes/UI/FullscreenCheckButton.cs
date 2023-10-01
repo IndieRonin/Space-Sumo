@@ -16,6 +16,8 @@ public partial class FullscreenCheckButton : CheckButton
 			DisplayServer.WindowSetMode(DisplayServer.WindowMode.ExclusiveFullscreen);
 			RefreshRingEvent rre = new();
 			rre.FireEvent();
+			RefreshBackgroundEvent rbe = new();
+			rbe.FireEvent();
 		}
 		else
 		{
