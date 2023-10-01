@@ -27,9 +27,12 @@ namespace Components
 			dashTimer.Start();
 			canDash = false;
 			StartDashBarEvent sdbe = new();
-
 			sdbe.DashTimer = dashTimer;
 			sdbe.FireEvent();
+
+			PlaySFXEvent psfxe = new();
+			psfxe.sfx = SFXList.Dash;
+			psfxe.FireEvent();
 		}
 
 		private void OnDashTimeout()

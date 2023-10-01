@@ -43,6 +43,18 @@ alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 
+[node name="TextEdit" type="TextEdit" parent="MarginContainer/HBoxContainer/Menu/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_readonly_color = Color(0.12549, 0.552941, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Ok, I'm not gona get to the story elements, so close your eyes and imagine this deep and rich story.
+Incomming Transmission:
+You are stranded in an escape pod; you just barely managed to open a rift back home, and you know what? Just your luck that the rift is ppulling in all those boxes with really unstable chemicals in them! You need to bump them out of the rift before it closes; otherwise, they go BOOM! Oh, try to stay in the rift circle; outside of it is a bad case of the deadsies, and I think you are allergic to those.
+Well, good luck! Oh, uh W,A,S,D to move and the left mouse for the booster, just like those really old games they used to play."
+editable = false
+wrap_mode = 1
+
 [node name="Start Match" type="Button" parent="MarginContainer/HBoxContainer/Menu" node_paths=PackedStringArray("menu")]
 layout_mode = 2
 theme_override_font_sizes/font_size = 62

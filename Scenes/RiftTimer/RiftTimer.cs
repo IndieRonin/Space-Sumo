@@ -21,6 +21,10 @@ public partial class RiftTimer : Node
 	}
 	private void OnStartRiftTimerEvent(StartRiftTimerEvent srte)
 	{
+		PlaySFXEvent psfxe = new();
+		psfxe.sfx = SFXList.RiftOpen;
+		psfxe.FireEvent();
+
 		riftTimer.Start();
 	}
 	private void OnRiftTimerTimeout()
@@ -28,4 +32,11 @@ public partial class RiftTimer : Node
 		RiftTimerDoneEvent rtde = new();
 		rtde.FireEvent();
 	}
+
+	public override void _ExitTree()
+	{
+		GetRiftTimeEvent.UnregisterListener(OnGetRiftTimeEvent);
+		StartRiftTimerEvent.UnregisterListener(OnStartRiftTimerEvent);
+	}
 }
+

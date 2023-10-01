@@ -15,6 +15,7 @@ namespace Components
 		private Vector2 acceleration = Vector2.Zero;
 		float x = 0, y = 0;
 		Vector2 target;
+		ulong OldCollisionTime = 0;
 		public override void _PhysicsProcess(double delta)
 		{
 			BounceBackEvent.RegisterListener(OnBounceBackEvent);
@@ -32,7 +33,7 @@ namespace Components
 		private void MoveAndBounceOffTheAsteroids(Vector2 velocity, float delta)
 		{
 			KinematicCollision2D collision = body2D.MoveAndCollide(velocity * delta, false);
-			if (collision != null)
+			if (collision != null && (Time.GetTicksMsec() - OldCollisionTime) > 500)
 			{
 				this.velocity = this.velocity.Bounce(collision.GetNormal()) * 0.5f;
 				Vector2 reflect = collision.GetRemainder().Bounce(collision.GetNormal());
@@ -45,6 +46,7 @@ namespace Components
 					BounceForce = -collision.GetNormal() * 700
 				};
 				bbe.FireEvent();
+				OldCollisionTime = Time.GetTicksMsec();
 			}
 		}
 
@@ -58,11 +60,15 @@ namespace Components
 			y = _y;
 			target = _target;
 		}
-
 		private void OnBounceBackEvent(BounceBackEvent bbe)
 		{
 			if (bbe.TargetID != GetParent().GetInstanceId()) return;
 			AccelMod += bbe.BounceForce;
+		}
+
+		public override void _ExitTree()
+		{
+			BounceBackEvent.UnregisterListener(OnBounceBackEvent);
 		}
 	}
 }

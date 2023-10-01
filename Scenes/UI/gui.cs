@@ -18,6 +18,13 @@ public partial class gui : CanvasLayer
 		ShowCountdownEvent.RegisterListener(OnShowCountdownEvent);
 		ShowResultsEvent.RegisterListener(OnShowResultsEvent);
 		ShowBlackoutEvent.RegisterListener(OnShowBlackoutEvent);
+		CallDeferred("PlayMusic");
+	}
+	public void PlayMusic()
+	{
+		PlayMusicEvent pme = new();
+		pme.music = MusicList.Menu;
+		pme.FireEvent();
 	}
 
 	private void OnShowMenuEvent(ShowMenuEvent sme)
@@ -35,10 +42,15 @@ public partial class gui : CanvasLayer
 	private void OnShowResultsEvent(ShowResultsEvent sre)
 	{
 		results.Visible = true;
+		HUD.Visible = false;
+		menu.Visible = false;
+		countdown.Visible = false;
+		blackout.Visible = false;
 	}
 	private void OnShowBlackoutEvent(ShowBlackoutEvent sbe)
 	{
 		blackout.Visible = true;
+
 	}
 
 }

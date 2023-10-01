@@ -27,4 +27,10 @@ public partial class hud : Control
 		dashBar.Value = dashtimer.WaitTime; //Set the max time
 		SetProcess(true);
 	}
+
+	public override void _ExitTree()
+	{
+		StartDashBarEvent.UnregisterListener(OnStartDashBarEvent);
+
+	}
 }

@@ -15,6 +15,9 @@ public partial class StartMatchPressed : Button
 
 	private void OnButtonUp()
 	{
+		PlaySFXEvent psfxe = new();
+		psfxe.sfx = SFXList.ButtonClick;
+		psfxe.FireEvent();
 		//Call the start of the blackout screen
 		ShowBlackoutEvent sbe = new();
 		sbe.FireEvent();

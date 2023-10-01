@@ -1,19 +1,20 @@
 [gd_scene load_steps=4 format=3 uid="uid://bk2bf5si4637j"]
 
 [ext_resource type="Script" path="res://Scenes/Boxes/BadBox.cs" id="1_031ul"]
-[ext_resource type="Texture2D" uid="uid://obylvhjk0lbt" path="res://icon.svg" id="2_a7tiy"]
+[ext_resource type="Texture2D" uid="uid://dkntjbq6tpdgc" path="res://Scenes/Boxes/Box3.png" id="2_6h1qk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cehm7"]
-size = Vector2(128, 128)
+size = Vector2(96, 112)
 
 [node name="BadBox3" type="RigidBody2D" groups=["Box"]]
 mass = 3.0
 gravity_scale = 0.0
 script = ExtResource("1_031ul")
+deathHit = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_cehm7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(0, 0.45098, 0.352941, 1)
-texture = ExtResource("2_a7tiy")
+scale = Vector2(1, 1.00741)
+texture = ExtResource("2_6h1qk")

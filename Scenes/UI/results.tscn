@@ -33,14 +33,21 @@ layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="Label" type="Label" parent="MarginContainer/Main/MidContainer"]
+[node name="Label" type="Label" parent="MarginContainer/Main/MidContainer" node_paths=PackedStringArray("exit")]
 layout_mode = 2
-theme_override_font_sizes/font_size = 120
+theme_override_font_sizes/font_size = 50
 text = "You may have won?"
 horizontal_alignment = 1
+autowrap_mode = 3
 script = ExtResource("1_s6vex")
+exit = NodePath("../../RightContainer/ExitButton")
 
 [node name="RightContainer" type="VBoxContainer" parent="MarginContainer/Main"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 2
+
+[node name="ExitButton" type="Button" parent="MarginContainer/Main/RightContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Text"

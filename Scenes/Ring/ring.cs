@@ -54,7 +54,16 @@ public partial class ring : Node2D
 
 	public void OnBodyEntered(Node2D body)
 	{
-		GD.Print("Death zone entered");
+		if (body.IsInGroup("Player"))
+		{
+			PlaySFXEvent psfxe = new();
+			psfxe.sfx = SFXList.explosion;
+			psfxe.FireEvent();
+			ShowResultsEvent sre = new();
+			sre.win = false;
+			sre.wentOutOfRift = true;
+			sre.FireEvent();
+		}
 	}
 
 	private void OnBoxGetTargetEvent(BoxGetTargetEvent bgte)
@@ -73,11 +82,15 @@ public partial class ring : Node2D
 
 		if (boxInRift)
 		{
-			//Call fail
+			ShowResultsEvent sre = new();
+			sre.win = false;
+			sre.FireEvent();
 		}
 		else
 		{
-			//Call win
+			ShowResultsEvent sre = new();
+			sre.win = true;
+			sre.FireEvent();
 		}
 	}
 	public void AdjustCollisionPoly()

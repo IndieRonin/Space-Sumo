@@ -40,13 +40,18 @@ public partial class BadBox : RigidBody2D
 				TargetID = bbe.TargetID
 			};
 			de.FireEvent();
-			this.CallDeferred("queue_free");
+
+			PlaySFXEvent psfxe = new();
+			psfxe.sfx = SFXList.explosion;
+			psfxe.FireEvent();
+			BounceBackEvent.UnregisterListener(OnBounceBackEvent);
+			CallDeferred("queue_free");
 		}
 	}
 
 	public override void _ExitTree()
 	{
-		BounceBackEvent.UnregisterListener(OnBounceBackEvent);
+
 	}
 
 }

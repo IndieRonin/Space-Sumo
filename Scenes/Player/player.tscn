@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Scenes/Components/Dash.cs" id="3_7befr"]
 [ext_resource type="Script" path="res://Scenes/Components/PlayerInput.cs" id="4_qrivi"]
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(5, -16, 9, -11, 15, -13, 22, -12, 27, -7, 29, 0, 27, 7, 22, 12, 15, 13, 9, 11, 5, 16, 0, 19, -7, 21, -10, 21, -13, 25, -16, 27, -20, 28, -24, 26, -25, 22, -25, 18, -24, 14, -27, 8, -29, 1, -27, -7, -24, -13, -25, -17, -25, -22, -24, -26, -20, -28, -16, -27, -13, -25, -10, -21, -7, -21, 0, -19)

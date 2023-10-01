@@ -1,0 +1,28 @@
+[gd_scene load_steps=9 format=3 uid="uid://bihy8ke03j7rm"]
+
+[ext_resource type="Script" path="res://Scenes/AudioPlayer/AudioPlayer.cs" id="1_piqo1"]
+[ext_resource type="AudioStream" uid="uid://cqblkcpcjengh" path="res://Sounds/Game.wav" id="2_tjkgv"]
+[ext_resource type="AudioStream" uid="uid://cfjy3l1j00as1" path="res://Sounds/Menu.wav" id="3_3i5qk"]
+[ext_resource type="AudioStream" uid="uid://7tvlr1f4f207" path="res://Sounds/Dash.wav" id="4_7fc1i"]
+[ext_resource type="AudioStream" uid="uid://ij2elxgib4ox" path="res://Sounds/Hit.wav" id="5_a8d62"]
+[ext_resource type="AudioStream" uid="uid://bn3pc0a2xc2px" path="res://Sounds/MenuButtonClick.wav" id="6_mxggq"]
+[ext_resource type="AudioStream" uid="uid://yprmx1hnrubk" path="res://Sounds/RiftOpen.wav" id="7_a6i48"]
+[ext_resource type="AudioStream" uid="uid://o0ucb7d4uoil" path="res://Sounds/Explosion.wav" id="8_6gbxa"]
+
+[node name="AudioPlayer" type="Node" node_paths=PackedStringArray("SFXPlayer", "MusicPlayer")]
+script = ExtResource("1_piqo1")
+SFXPlayer = NodePath("SFX")
+MusicPlayer = NodePath("Music")
+gameMusic = ExtResource("2_tjkgv")
+menuMusic = ExtResource("3_3i5qk")
+dash = ExtResource("4_7fc1i")
+hit = ExtResource("5_a8d62")
+buttonClick = ExtResource("6_mxggq")
+riftOpen = ExtResource("7_a6i48")
+explosion = ExtResource("8_6gbxa")
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+volume_db = -15.0
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+volume_db = -30.0

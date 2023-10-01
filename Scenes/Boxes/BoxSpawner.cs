@@ -14,8 +14,10 @@ public partial class BoxSpawner : Node2D
 
 	int numOfBoxes = 0;
 	int boxToSpawn = 0;
+	int baseBoxToSpawn = 1;
 	float spawnTimer = 0;
 	bool getWattime = false;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -28,7 +30,7 @@ public partial class BoxSpawner : Node2D
 		grte.FireEvent();
 		if (!getWattime)
 		{
-			spawnTimer = grte.WaitTime - 5;
+			spawnTimer = grte.WaitTime - 10;
 			getWattime = true;
 		}
 		if (grte.timeLeft < 10) return;
@@ -36,13 +38,13 @@ public partial class BoxSpawner : Node2D
 		if (grte.timeLeft < spawnTimer)
 		{
 			SpawnBoxes();
-			spawnTimer = grte.timeLeft - 5;
+			spawnTimer = grte.timeLeft - 10;
 		}
 	}
 
 	private void SpawnBoxes()
 	{
-		numOfBoxes = rng.RandiRange(1, 4);
+		numOfBoxes = rng.RandiRange(1, baseBoxToSpawn);
 
 		for (int i = 0; i < numOfBoxes; i++)
 		{
@@ -63,6 +65,6 @@ public partial class BoxSpawner : Node2D
 			badBox.GlobalPosition = SpawnPosition + circleSpawnPosition;
 			AddChild(badBox);
 		}
-
+		baseBoxToSpawn++;
 	}
 }

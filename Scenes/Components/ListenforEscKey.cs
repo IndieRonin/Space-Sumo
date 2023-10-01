@@ -13,7 +13,6 @@ namespace Components
 			if (@event is InputEventKey inputEventKey)
 			{
 				if (inputEventKey.Pressed)
-
 				{
 					if (inputEventKey.Keycode == Key.Escape)
 					{
