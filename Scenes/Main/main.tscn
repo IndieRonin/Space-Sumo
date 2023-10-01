@@ -1,26 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://cflax6wgv563w"]
+[gd_scene load_steps=8 format=3 uid="uid://cflax6wgv563w"]
 
 [ext_resource type="Script" path="res://Scenes/Main/main.cs" id="1_pmanp"]
 [ext_resource type="PackedScene" uid="uid://bll4qsh22nx3l" path="res://Scenes/Player/player.tscn" id="1_qsm0j"]
-[ext_resource type="PackedScene" uid="uid://86qxvx3jwkx" path="res://Scenes/enemy/Enemy.tscn" id="3_oghvq"]
+[ext_resource type="PackedScene" uid="uid://dys68yx3ugja2" path="res://Scenes/Background/background.tscn" id="2_b7k8v"]
+[ext_resource type="PackedScene" uid="uid://duwvnfddij42d" path="res://Scenes/Boxes/box_spawner.tscn" id="4_8iajj"]
 [ext_resource type="PackedScene" uid="uid://bhptlrhody5nm" path="res://Scenes/Ring/ring.tscn" id="4_gfhvy"]
 [ext_resource type="PackedScene" uid="uid://ioecdwpqeb7n" path="res://Scenes/UI/gui.tscn" id="4_nm0qp"]
 [ext_resource type="Script" path="res://Scenes/Components/ListenforEscKey.cs" id="5_wcl1i"]
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node2D"]
 script = ExtResource("1_pmanp")
-
-[node name="Player" parent="." instance=ExtResource("1_qsm0j")]
-visible = false
-position = Vector2(649, 211)
-
-[node name="Player2" parent="." instance=ExtResource("3_oghvq")]
-visible = false
-position = Vector2(1032, 783)
+backgroundScene = ExtResource("2_b7k8v")
+ringScene = ExtResource("4_gfhvy")
+boxSpawnerScene = ExtResource("4_8iajj")
+playerScene = ExtResource("1_qsm0j")
 
 [node name="GUI" parent="." instance=ExtResource("4_nm0qp")]
-
-[node name="Ring" parent="." instance=ExtResource("4_gfhvy")]
 
 [node name="ListenforEscKey" type="Node" parent="."]
 script = ExtResource("5_wcl1i")

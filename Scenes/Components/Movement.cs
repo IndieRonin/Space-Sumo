@@ -10,7 +10,7 @@ namespace Components
 		[Export] CharacterBody2D body2D;
 		[Export] public float speed = 500f;
 		[Export] public float friction = .97f;
-		private Vector2 AccelMod = Vector2.One;
+		private Vector2 AccelMod = Vector2.Zero;
 		private Vector2 velocity = Vector2.Zero;
 		private Vector2 acceleration = Vector2.Zero;
 		float x = 0, y = 0;
@@ -39,11 +39,12 @@ namespace Components
 				Vector2 reflect = collision.GetRemainder().Bounce(collision.GetNormal());
 				body2D.MoveAndCollide(reflect);
 
+				GD.Print("Movement: MoveAndBounceOffTheAsteroids - AccelMod = " + velocity);
 				BounceBackEvent bbe = new()
 				{
 					callerClass = "Movement: MoveAndBounceOffTheAsteroids()",
-					ID = collision.GetColliderId(),
-					BounceForce = -collision.GetNormal() * 5.0f
+					TargetID = collision.GetColliderId(),
+					BounceForce = -collision.GetNormal() * 700
 				};
 				bbe.FireEvent();
 			}
@@ -62,7 +63,7 @@ namespace Components
 
 		private void OnBounceBackEvent(BounceBackEvent bbe)
 		{
-			if (bbe.ID != GetParent().GetInstanceId()) return;
+			if (bbe.TargetID != GetParent().GetInstanceId()) return;
 			AccelMod += bbe.BounceForce;
 		}
 	}

@@ -10,7 +10,6 @@ namespace Components
 		[Export] Dash dash;
 		float x, y;
 		Vector2 target;
-		bool canDash = true;
 
 		public override void _Input(InputEvent @event)
 		{
@@ -35,14 +34,12 @@ namespace Components
 			}
 			if (Input.IsMouseButtonPressed(MouseButton.Left))
 			{
-				canDash = true;
+				dash?.GetInput();
 			}
 		}
 		public override void _Process(double delta)
 		{
 			move?.GetInput(x, y, target);
-			dash?.GetInput(canDash);
-			canDash = false;
 		}
 	}
 }

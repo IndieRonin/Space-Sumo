@@ -1,5 +1,7 @@
+using EventCallback;
 using Godot;
 using System;
+using System.Runtime.ExceptionServices;
 
 namespace Components
 {
@@ -11,20 +13,28 @@ namespace Components
 		[Export] Movement move;
 		[Export] Timer dashTimer = null;
 		bool canDash = true;
-		public override void _PhysicsProcess(double delta)
+
+		public override void _Ready()
+		{
+			dashTimer.Timeout += () => OnDashTimeout();
+		}
+		public void GetInput()
 		{
 			if (!canDash) return; //If the get input has changed the value of candash then run the code
 			Vector2 mousePosition = body2D.GetGlobalMousePosition();
-			if (!dashTimer.IsStopped()) return;
 			Vector2 dashDir = mousePosition - body2D.GlobalPosition;
 			move?.ModAccel(dashDir.Normalized() * dashSpeed);
 			dashTimer.Start();
 			canDash = false;
+			StartDashBarEvent sdbe = new();
+
+			sdbe.DashTimer = dashTimer;
+			sdbe.FireEvent();
 		}
 
-		public void GetInput(bool _canDash)
+		private void OnDashTimeout()
 		{
-			canDash = _canDash;
+			canDash = true;
 		}
 	}
 }

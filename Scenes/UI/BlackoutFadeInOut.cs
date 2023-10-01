@@ -10,31 +10,18 @@ public partial class BlackoutFadeInOut : ColorRect
 	public override void _Ready()
 	{
 		ShowBlackoutEvent.RegisterListener(OnShowBlackoutEvent);
-		//Listen for ContinueBlackout event
+		ContinueBlackoutEvent.RegisterListener(OnContinueBlackoutEvent);
 	}
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
 		if (fadingIn)
 		{
-			Color = new Color(0, 0, 0, Mathf.Lerp(Color.A, 1, .01f));
-			if (Color.A > .95)
-			{
-				Color = new Color(0, 0, 0, 1);
-				fadingIn = false;
-
-				//send WaitforBlackoutEvent  
-			}
+			FadeIn();
 		}
 		if (fadingOut)
 		{
-			Color = new Color(0, 0, 0, Mathf.Lerp(Color.A, 0, .01f));
-			if (Color.A < .05)
-			{
-				Color = new Color(0, 0, 0, 0);
-				fadingOut = false;
-				((Control)GetParent()).Visible = false;
-			}
+			FadeOut();
 		}
 	}
 	private void OnShowBlackoutEvent(ShowBlackoutEvent sbe)
@@ -47,7 +34,30 @@ public partial class BlackoutFadeInOut : ColorRect
 		fadingOut = true;
 	}
 
+	private void FadeIn()
+	{
+		Color = new Color(.05f, .05f, .05f, Mathf.Lerp(Color.A, 1.0f, .01f));
+		if (Color.A > .95f)
+		{
+			Color = new Color(.05f, .05f, .05f, 1.0f);
+			fadingIn = false;
 
+			//Once th eblacout is complete we call this function to contiue the loading of things
+			WaitforBlackoutEvent wfbe = new();
+			wfbe.FireEvent();
+		}
+	}
+	private void FadeOut()
+	{
+		Color = new Color(.05f, .05f, .05f, Mathf.Lerp(Color.A, 0.0f, .01f));
+		if (Color.A < .05f)
+		{
+			BlackoutDoneEvent bde = new();//Send a message that the blackout is done
+			bde.FireEvent();
 
-	Left and error here for myself//Continue her wit hte fade in and out have loding events WaitforBlackoutEvent to hide and load while everything is black
+			Color = new Color(.05f, .05f, .05f, 0.0f);
+			fadingOut = false;
+			((Control)GetParent()).Visible = false;
+		}
+	}
 }

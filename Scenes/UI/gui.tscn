@@ -20,11 +20,12 @@ visible = false
 
 [node name="Menu" parent="." instance=ExtResource("2_qj5io")]
 
-[node name="Countdown" parent="." instance=ExtResource("4_drk42")]
+[node name="results" parent="." instance=ExtResource("5_5jxbd")]
 visible = false
 
-[node name="results" parent="." instance=ExtResource("5_5jxbd")]
+[node name="Countdown" parent="." instance=ExtResource("4_drk42")]
 visible = false
 
 [node name="Blackout" parent="." instance=ExtResource("6_liugq")]
 visible = false
+mouse_filter = 2

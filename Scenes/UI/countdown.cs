@@ -10,12 +10,12 @@ public partial class countdown : Label
 	public override void _Ready()
 	{
 		countdownTimer.Timeout += () => OnTimeout();
+		ShowCountdownEvent.RegisterListener(OnShowCountdownEvent);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if (Visible && !startedTimer) countdownTimer.Start();
 		if (countdownTimer.TimeLeft < 1)
 		{
 			Text = "Fight!";
@@ -24,8 +24,6 @@ public partial class countdown : Label
 		{
 			Text = Mathf.RoundToInt(countdownTimer.TimeLeft).ToString();
 		}
-
-		startedTimer = true;
 	}
 
 	private void OnTimeout()
@@ -33,5 +31,10 @@ public partial class countdown : Label
 		CountdownDoneEvent cde = new();
 		cde.FireEvent();
 		Visible = false; //Hide itself as it is done
+	}
+
+	private void OnShowCountdownEvent(ShowCountdownEvent sce)
+	{
+		countdownTimer.Start();
 	}
 }

@@ -1,6 +1,11 @@
 using Godot;
 using System;
 
-public partial class ExternalInput : Node
+namespace Components
 {
+    [GlobalClass]
+    public partial class ExternalInput : Node
+    {
+        //Dont delete this as the inputs inherit from this please!!!!
+    }
 }
